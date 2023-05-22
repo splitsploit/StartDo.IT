@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            CampTableSeeder::class
+            CampTableSeeder::class,
+            CampBenefitTableSeeder::class
         ]);
     }
 }
