@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CampTableSeeder::class,
-            CampBenefitTableSeeder::class
+            CampBenefitTableSeeder::class,
+            AdminUserSeeder::class
         ]);
     }
 }
