@@ -16,15 +16,15 @@ class CampTableSeeder extends Seeder
     {
         $camps = [
             [
-                'title' => 'Beginner Class',
-                'slug' => Str::slug('Beginner Class'),
+                'title' => 'Intermediate Class',
+                'slug' => Str::slug('Intermediate Class'),
                 'price' => 140,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time()),
             ],
             [
-                'title' => 'Intermediate Class',
-                'slug' => Str::slug('Intermediate Class'),
+                'title' => 'Beginner Class',
+                'slug' => Str::slug('Beginner Class'),
                 'price' => 280,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
