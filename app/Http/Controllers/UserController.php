@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
@@ -25,6 +27,10 @@ class UserController extends Controller
             'email_verified_at' => date('Y-m-d H:i:s', time()),
         ];
 
-        return $data;
+        $user = User::firstOrCreate(['email' => $data['email']], $data);
+
+        Auth::login($user, true);
+
+        return redirect()->route('index');
     }
 }
