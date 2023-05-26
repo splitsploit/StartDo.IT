@@ -6,6 +6,7 @@ use App\Models\Camp;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -30,9 +31,16 @@ class CheckoutController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Camp $camp)
     {
-        //
+        // return $request->except('_token');
+        // return $camp;
+        // return $request->all();
+
+        // mapping request data
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $data['camp_id'] = $camp->id;
     }
 
     /**
