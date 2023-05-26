@@ -39,8 +39,20 @@ class CheckoutController extends Controller
 
         // mapping request data
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = Auth::id();
         $data['camp_id'] = $camp->id;
+
+        // update data user
+        $user = Auth::user();
+        $user->email = $data['email'];
+        $user->name = $data['name'];
+        $user->occupation = $data['occupation'];
+        $user->save();
+
+        // create checkout
+        $checkout = Checkout::create($data);
+
+        return redirect(route('checkout.success'));
     }
 
     /**
