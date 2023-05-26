@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('index');
 
-Route::get('checkout/{camp:slug}', function() {
-    return view('checkout');
-})->name('checkout');
+// Route::get('checkout/{camp:slug}', function() {
+//     return view('checkout');
+// })->name('checkout');
 
-Route::get('success-checkout', function() {
-    return view('success_checkout');
-})->name('success-checkout');
+Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
+
+// Route::get('success-checkout', function() {
+//     return view('success_checkout');
+// })->name('success-checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
