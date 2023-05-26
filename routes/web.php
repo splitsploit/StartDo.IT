@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index')->name('index');
 
-Route::get('checkout', function() {
+Route::get('checkout/{camp:slug}', function() {
     return view('checkout');
 })->name('checkout');
 
