@@ -43,8 +43,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">
-                                        Get Invoice
+                                    <a href="https://wa.me/6282265157644/?text= Hai Admin, saya mau menanyakan kelas {{ $checkout->camp->title }}" class="btn btn-primary">
+                                        Contact Support
                                     </a>
                                 </td>
                             </tr>
