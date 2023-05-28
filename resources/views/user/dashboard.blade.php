@@ -36,8 +36,11 @@
                                 <td>
                                     @if ($checkout->is_paid)
                                         <strong class="text-success">Payment Success</strong>
+
+                                        @else
+                                        <strong>Waiting for Payment</strong>
+
                                     @endif
-                                    <strong>Waiting for Payment</strong>
                                 </td>
                                 <td>
                                     <a href="#" class="btn btn-primary">
