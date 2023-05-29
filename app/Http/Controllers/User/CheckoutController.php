@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\User\Checkout\StoreRequest;
 
 class CheckoutController extends Controller
 {
@@ -40,7 +41,7 @@ class CheckoutController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Camp $camp)
+    public function store(StoreRequest $request, Camp $camp)
     {
         // return $request->except('_token');
         // return $camp;
