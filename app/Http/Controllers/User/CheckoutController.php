@@ -7,6 +7,7 @@ use App\Models\Checkout;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
@@ -21,8 +22,16 @@ class CheckoutController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Camp $camp)
+    public function create(Camp $camp, Request $request)
     {
+
+        if($camp->isRegistered) {
+
+            // $request->session()->flash('error', 'You Already Join This {$camp->title} class');
+
+            return redirect()->route('dashboard')->with('error', "You Already Join This {$camp->title}");
+        }
+
         return view('checkout.create', [
             'camp' => $camp
         ]);

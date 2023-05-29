@@ -16,6 +16,7 @@
             </div>
             <div class="row my-5">
                 <table class="table">
+                    @include('components.alert')
                     <tbody>
                         @forelse ($checkouts as $checkout)
                             <tr class="align-middle">
@@ -50,7 +51,7 @@
                             </tr>
                         @empty
                             <td colspan="5">
-                                <p>Anda Belum Melakukan Transaksi</p>
+                                <p>Nothing Data To Show</p>
                             </td>
                         @endforelse
                     </tbody>
