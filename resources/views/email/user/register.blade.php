@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Welcome
 
-The body of your message.
+Congratulation!, your account has successfully created. Now you can choose and start with our Bootcamp
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="route('login')">
+Login Here
 </x-mail::button>
 
 Thanks,<br>
