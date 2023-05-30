@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Models\Camp;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
+use App\Mail\Checkout\CheckoutMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\User\Checkout\StoreRequest;
 
@@ -62,6 +64,11 @@ class CheckoutController extends Controller
         // create checkout
         $checkout = Checkout::create($data);
 
+        // send email notification
+        $userLogin = Auth::user()->email;
+
+        Mail::to($userLogin)->send(new CheckoutMail($checkout));
+
         return redirect(route('checkout.success'));
     }
 
@@ -99,5 +106,9 @@ class CheckoutController extends Controller
 
     public function success() {
         return view('checkout.success');
+    }
+
+    public function invoice(Checkout $checkout) {
+        return $checkout;
     }
 }
