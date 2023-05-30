@@ -3,10 +3,10 @@
 
 Hi,
 
-Thank you for register {{ $checkout->camp->title }}, please see payment details by click button below
+Thank you for register {{ $checkout->camp->title }}, you can see your class at your Dashboard page
 
-<x-mail::button :url="route('user.checkout.invoice', ['checkout' => $checkout])">
-Get Invoice
+<x-mail::button :url="route('dashboard')">
+My Dashboard
 </x-mail::button>
 
 Thanks,<br>
