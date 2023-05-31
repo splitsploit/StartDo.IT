@@ -25,7 +25,13 @@
                 <div class="d-flex user-logged nav-item dropdown no-arrow">
                     <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                         Halo, {{ Auth::user()->name }}
-                            <img src="{{ Auth::user()->avatar }}" class="user-photo" alt="">
+
+                        @if (Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" class="user-photo border" alt="" style="border-radius: 50%">
+                        @else
+                            {{-- get stock default admin photo with inisial name, based by name --}}
+                            <img src="https://ui-avatars.com/api/?name=admin" class="user-photo border" alt="" style="border-radius: 50%">
+                        @endif
                             
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto">
                                 <li>
