@@ -42,18 +42,18 @@ Route::middleware('auth')->group(function () {
     // dashboard route
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-    Route::prefix('user/dashboard')->namespace('User')->name('user.')->group(function() {
+    Route::prefix('user/dashboard')->namespace('User')->middleware('CheckRole:user')->name('user.')->group(function() {
         Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
     });
 
-    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->group(function() {
+    Route::prefix('admin/dashboard')->namespace('Admin')->middleware('CheckRole:admin')->name('admin.')->group(function() {
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
     });
 
     // checkout route
-    Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-    Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
-    Route::post('checkout/{camp}', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success')->middleware('CheckRole:user');
+    Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create')->middleware('CheckRole:user');
+    Route::post('checkout/{camp}', [CheckoutController::class, 'store'])->name('checkout.store')->middleware('CheckRole:user');
 
     // invoice route
     // Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
