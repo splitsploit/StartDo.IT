@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Checkout;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardContoller extends Controller
 {
     public function index() {
-        return 'Admin';
+
+        $checkouts = Checkout::with('camp')->get();
+
+        return view('admin.dashboard', [
+            'checkouts' => $checkouts
+        ]);
     }
 }

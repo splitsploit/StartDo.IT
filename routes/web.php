@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
     });
 
-    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin')->group(function() {
+    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->group(function() {
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
     });
 
