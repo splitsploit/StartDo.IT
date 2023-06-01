@@ -30,9 +30,9 @@ class CheckoutController extends Controller
 
         if($camp->isRegistered) {
 
-            // $request->session()->flash('error', 'You Already Join This {$camp->title} class');
+            $request->session()->flash('error', "You Already Join This {$camp->title}");
 
-            return redirect()->route('dashboard')->with('error', "You Already Join This {$camp->title}");
+            return redirect()->route('user.dashboard');
         }
 
         return view('checkout.create', [
