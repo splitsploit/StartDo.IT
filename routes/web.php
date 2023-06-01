@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardContoller as AdminDashboard;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,8 +39,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // user dashboard route
+    // dashboard route
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+    Route::prefix('user/dashboard')->namespace('User')->name('user.')->group(function() {
+        Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
+    });
+
+    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin')->group(function() {
+        Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+    });
 
     // checkout route
     Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
