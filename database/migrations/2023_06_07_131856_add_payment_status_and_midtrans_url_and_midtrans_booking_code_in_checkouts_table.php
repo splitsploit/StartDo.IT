@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('checkouts', function (Blueprint $table) {
-            $table->string('payment_status', 100)->default('waiting');
-            $table->string('midtrans_url')->nullable();
-            $table->string('midtrans_booking_code')->nullable();
+            $table->string('payment_status', 100)->default('waiting')->after('camp_id');
+            $table->string('midtrans_url')->nullable()->after('payment_status');
+            $table->string('midtrans_booking_code')->nullable()->after('midtrans_url');
         });
     }
 
