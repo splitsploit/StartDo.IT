@@ -35,15 +35,24 @@
                                     <strong>${{ $checkout->camp->price }}</strong>
                                 </td>
                                 <td>
-                                    @if ($checkout->is_paid)
+                                    {{-- not used again ( static ) --}}
+                                    {{-- @if ($checkout->is_paid)
                                         <strong class="text-success">Payment Success</strong>
 
                                         @else
                                         <strong>Waiting for Payment</strong>
 
-                                    @endif
+                                    @endif --}}
+                                    {{ strtoupper($checkout->payment_status) }}
                                 </td>
                                 <td>
+
+                                    @if($checkout->payment_status == 'waiting')
+
+                                        <a href="{{ $checkout->midtrans_url }}" class="btn btn-primary">Pay Now</a>
+
+                                    @endif
+
                                     <a href="https://wa.me/6282265157644/?text= Hai Admin, saya mau menanyakan kelas {{ $checkout->camp->title }}" class="btn btn-primary">
                                         Contact Support
                                     </a>
