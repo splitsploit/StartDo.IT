@@ -15,7 +15,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        return view('admin.discount.index');
+        $discounts = Discount::all();
+
+        return view('admin.discount.index', compact('discounts'));
     }
 
     /**
@@ -34,7 +36,7 @@ class DiscountController extends Controller
         $discount = Discount::create($request->all());
 
         $request->session()->flash('success', 'A new discount has been successfully created');
-        
+
         return redirect()->route('admin.discount.index');
     }
 
