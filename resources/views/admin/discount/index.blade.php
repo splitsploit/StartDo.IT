@@ -10,10 +10,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            @include('components.alert')
                             <div class="col-md-12 d-flex flex-row-reverse">
                                 <a href="{{ route('admin.discount.create') }}" class="btn btn-sm btn-primary">Add Discount</a>
                             </div>
-                            @include('components.alert')
                         </div>
                     </div>
                 </div>

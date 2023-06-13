@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DiscountStoreRequest;
 use App\Models\Discount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DiscountController extends Controller
 {
@@ -27,9 +29,13 @@ class DiscountController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DiscountStoreRequest $request)
     {
-        //
+        $discount = Discount::create($request->all());
+
+        $request->session()->flash('success', 'A new discount has been successfully created');
+        
+        return redirect()->route('admin.discount.index');
     }
 
     /**
