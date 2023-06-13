@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header mt-3">
                         StartDo.IT List Transaction
                     </div>
                     <div class="card-body">
