@@ -53,7 +53,9 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-        //
+        return view('admin.discount.edit', [
+            'discount' => $discount
+        ]);
     }
 
     /**
@@ -61,7 +63,10 @@ class DiscountController extends Controller
      */
     public function update(Request $request, Discount $discount)
     {
-        //
+        $discount->update($request->all());
+        $request->session()->flash('success', 'A new discount has been successfully updated');
+
+        return redirect()->route('admin.discount.index');
     }
 
     /**
