@@ -72,8 +72,11 @@ class DiscountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Discount $discount)
+    public function destroy(Request $request, Discount $discount)
     {
-        //
+        $discount->delete();
+        $request->session()->flash('success', 'A new discount has been successfully updated');
+
+        return redirect()->route('admin.discount.index');
     }
 }

@@ -46,8 +46,9 @@
                                                 <a href="{{ route('admin.discount.edit', $discount->id) }}" class="btn btn-warning">Edit</a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('admin.discount.destroy', $discount->id) }}">
+                                                <form action="{{ route('admin.discount.destroy', $discount->id) }}" method="POST">
                                                     @csrf
+                                                    @method('DELETE')
                                                     <button class="btn btn-danger">Delete</button>
                                                 </form>
                                             </td>
