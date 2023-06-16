@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('checkouts', function (Blueprint $table) {
-            $table->foreignId('discount_id')->nullable();
-            $table->unsignedInteger('discount_percentage')->nullable();
-            $table->unsignedInteger('total')->default(0);
+            $table->foreignId('discount_id')->nullable()->after('midtrans_booking_code');
+            $table->unsignedInteger('discount_percentage')->nullable()->after('discount_id');
+            $table->unsignedInteger('total')->default(0)->after('discount_percentage');
 
             $table->foreign('discount_id')->references('id')->on('discounts');
         });
