@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use Midtrans;
+use Exception;
 use App\Models\Camp;
 use App\Models\Checkout;
+use App\Models\Discount;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\Checkout\CheckoutMail;
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\User\Checkout\StoreRequest;
-use Exception;
 
 class CheckoutController extends Controller
 {
@@ -63,7 +64,6 @@ class CheckoutController extends Controller
 
         // mapping request data
         $data = $request->all();
-        return $data;
         $data['user_id'] = Auth::id();
         $data['camp_id'] = $camp->id;
 
@@ -78,6 +78,15 @@ class CheckoutController extends Controller
 
         // create checkout
         $checkout = Checkout::create($data);
+
+        // check discount
+        if($request->discount) {
+            $discount = Discount::where('code', $request->discount)->first();
+            $data['discount_id'] = $discount->id;
+            $data['discount_percentage'] = $discount->percentage;
+        }
+
+        return $data;
 
         // midtrans payment gateway
         $this->getSnapRedirect($checkout);
