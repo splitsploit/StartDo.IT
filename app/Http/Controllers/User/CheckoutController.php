@@ -76,9 +76,6 @@ class CheckoutController extends Controller
         $user->address = $data['address'];
         $user->save();
 
-        // create checkout
-        $checkout = Checkout::create($data);
-
         // check discount
         if($request->discount) {
             $discount = Discount::where('code', $request->discount)->first();
@@ -86,7 +83,10 @@ class CheckoutController extends Controller
             $data['discount_percentage'] = $discount->percentage;
         }
 
-        return $data;
+        // create checkout
+        $checkout = Checkout::create($data);
+
+        return $checkout;
 
         // midtrans payment gateway
         $this->getSnapRedirect($checkout);
