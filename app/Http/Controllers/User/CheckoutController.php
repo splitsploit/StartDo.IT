@@ -63,6 +63,7 @@ class CheckoutController extends Controller
 
         // mapping request data
         $data = $request->all();
+        return $data;
         $data['user_id'] = Auth::id();
         $data['camp_id'] = $camp->id;
 
