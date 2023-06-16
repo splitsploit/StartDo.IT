@@ -34,6 +34,7 @@ class StoreRequest extends FormRequest
             // 'cvc' => 'required|numeric|digits:3',
             'phone' => 'required|string',
             'address' => 'required|string',
+            'discount' => 'nullable|string|exists:discounts,code,deleted_at,NULL',
         ];
     }
 }
