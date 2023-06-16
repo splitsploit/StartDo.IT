@@ -15,7 +15,10 @@ class Checkout extends Model
         'camp_id',
         'payment_status',
         'midtrans_url',
-        'midtrans_booking_code'
+        'midtrans_booking_code',
+        'discount_id',
+        'discount_percentage',
+        'total'
     ];
 
     // not used function
