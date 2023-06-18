@@ -40,7 +40,7 @@
                                             </span>
                                         @else
                                             <span class="badge bg-danger">
-                                                Nothing Discount
+                                                No Discount Used
                                             </span>
                                         @endif
                                     </strong>
