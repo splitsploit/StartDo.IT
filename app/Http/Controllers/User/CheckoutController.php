@@ -86,8 +86,6 @@ class CheckoutController extends Controller
         // create checkout
         $checkout = Checkout::create($data);
 
-        return $checkout;
-
         // midtrans payment gateway
         $this->getSnapRedirect($checkout);
 
@@ -146,16 +144,32 @@ class CheckoutController extends Controller
 
         $checkout->midtrans_booking_code = $orderId;
 
-        $transaction_details = [
-            'order_id' => $orderId,
-            'gross_amount' => $price,
-        ];
-
         $item_details[] = [
             'id' => $orderId,
             'price' => $price,
             'quantity' => 1,
             'name' => "Payment for {$checkout->camp->title}",
+        ];
+
+        // if checkout has discount
+        $discountPrice = 0;
+        if($checkout->discount) {
+            
+            // logic price discount
+            $discountPrice = $price * $checkout->discount_percentage / 100;
+
+            $item_details[] = [
+                'id' => $checkout->discount->code,
+                'price' => $discountPrice,
+                'quantity' => 1,
+                'name' => "Discount {$checkout->discount->name} ({ $checkout->discount_percentage }%)",
+            ];
+        }
+
+        $total = $price - $discountPrice;
+        $transaction_details = [
+            'order_id' => $orderId,
+            'gross_amount' => $total,
         ];
 
         $userData = [
@@ -188,6 +202,7 @@ class CheckoutController extends Controller
             // Get SNAP payment URL
             $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $checkout->midtrans_url = $paymentUrl;
+            $checkout->total = $total;
             $checkout->save();
 
             return $paymentUrl;
