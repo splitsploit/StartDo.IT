@@ -32,7 +32,18 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <strong>${{ $checkout->camp->price }}</strong>
+                                    <strong>
+                                        Rp. {{ $checkout->total }}
+                                        @if ($checkout->discount_id)
+                                            <span class="badge bg-success">
+                                                Use Disc: {{ $checkout->discount_percentage }}
+                                            </span>
+                                        @else
+                                            <span class="badge bg-danger">
+                                                Nothing Discount
+                                            </span>
+                                        @endif
+                                    </strong>
                                 </td>
                                 <td>
                                     {{-- not used again ( static ) --}}
