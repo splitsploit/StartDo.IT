@@ -160,7 +160,7 @@ class CheckoutController extends Controller
 
             $item_details[] = [
                 'id' => $checkout->discount->code,
-                'price' => $discountPrice,
+                'price' => -$discountPrice,
                 'quantity' => 1,
                 'name' => "Discount {$checkout->discount->name} ({ $checkout->discount_percentage }%)",
             ];
